@@ -1,17 +1,12 @@
-<%-- 
-    Document   : home
-    Created on : 24/06/2018, 17:19:46
-    Author     : tenor
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Home - Taxi Online</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="WEB-INF/jspf/header.jspf"%>
+        <h1>Página Inicial</h1>
     </body>
 </html>
