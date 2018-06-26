@@ -2,9 +2,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Solicita a Corrida</title>
     </head>
     <body>
     <%@include file="WEB-INF/jspf/header.jspf" %>
@@ -14,24 +14,34 @@
         <%}else {%>
             <% User user = (User) session.getAttribute("user"); %>
             <%if (user.getRole().equals("ADMIN")){%>
-            <table border="1">
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>KM</th>
-                    <th>VALOR TOTAL</th>
-                    <th>ID DO MOTORISTA</th>
-                    <th>ID DO PASSAGEIRO</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">KM</th>
+                    <th scope="col">VALOR TOTAL</th>
+                    <th scope="col">ID DO MOTORISTA</th>
+                    <th scope="col">ID DO PASSAGEIRO</th>
+                    <th scope="col">COMANDO 1</th>
                 </tr>
-                
+                </thead>
+                <tbody>
                 <%for(AdicionarCorrida run: AdicionarCorrida.getRun()){%>
                 <tr>
-                    <td><%= run.getId_corrida()%></td>
+                    <th scope="row"><%= run.getId_corrida()%></th>
                     <td><%= run.getQtd_km()%></td>
                     <td>R$ <%= run.getVl_corrida()%></td>
                     <td><%= run.getTb_mot()%></td>
                     <td><%= run.getTb_pass()%></td>
+                    <td>
+                        <form>
+                            <input type="hidden" name="id" value="<%= run.getId_corrida()%>"/>
+                            <input type="submit" name="formDelCorrida" value="Remover"/>
+                        </form>
+                    </td>
                 </tr>
                 <%}%>
+                </tbody>
             </table>
             <%}else{%>
                 <h2>Você não tem permissão para visualizar a lista de corridas</h2>

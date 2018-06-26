@@ -4,6 +4,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
 <%
     String error = null;
     if(request.getParameter("cadCorrida") != null) {
@@ -33,34 +34,54 @@
     </head>
     <body>
     <%@include file="WEB-INF/jspf/header.jspf" %>
-        <h1>Solicitar Corrida</h1>
-        <%if (session.getAttribute("user") == null) {%>
-            <h2>É preciso estar autenticado para acessar este recurso</h2>
-        <%}else {%>
-            <% User user = (User) session.getAttribute("user"); %>
-            <%if (!user.getRole().equals("ADMIN") || !user.getRole().equals("OPERADOR")){%>
-            <fieldset>
-                <legend>Solicitar Corrida</legend>
-                <form name="solicita">
-                    Quantidade de KM: <input type="text" name="qtd_km"/>
-                    Selecione o Motorista:
-                    <select name="driver_selecionado">
-                        <option>Selecione</option>
-                        <%for(AdicionarMotorista d: AdicionarMotorista.getDrivers()){%>
-                            <option value="<%= d.getId_motorista()%>"><%= d.getNm_motorista()%></option>
-                        <%}%>
-                    </select>
-                    Selecione o Cliente:
-                    <select name="pass_selecionado">
-                        <option>Selecione</option>
-                        <%for(AdicionarPassageiro p: AdicionarPassageiro.getPassa()){%>
-                            <option value="<%= p.getId_passageiro()%>"><%= p.getNm_passageiro()%></option>
-                        <%}%>
-                    </select>
-                    <input type="submit" name="cadCorrida" value="Cadastrar"/>
-                </form>
-            </fieldset>  
+        <center>
+            <div class="jumbotron">
+                <div class="container">
+                    <h2>Seja bem vindo ao a solicitação de coriddas</h2>
+                    <h3>Insira abaixo os seus dados</h3>
+                </div>
+            </div>
+        </center>
+        
+        <div class="container">
+            <%if (session.getAttribute("user") == null) {%>
+                <h2>É preciso estar autenticado para acessar este recurso</h2>
+            <%}else {%>
+                <% User user = (User) session.getAttribute("user"); %>
+                <%if (!user.getRole().equals("ADMIN") || !user.getRole().equals("OPERADOR")){%>
+                    <form name="solicita">
+                        <div class="form-group row">
+                            <label for="qtd" class="col-sm-2 col-form-label">Quantidade de KM</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" placeholder="Digite a quantida de KM" name="qtd_km" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="driver_selecionado" class="col-sm-2 col-form-label">Selecione o Motorista</label>
+                            <div class="col-sm-10">
+                                <select class="custom-select my-1 mr-sm-2" name="driver_selecionado">
+                                    <option>Selecione</option>
+                                    <%for(AdicionarMotorista d: AdicionarMotorista.getDrivers()){%>
+                                        <option value="<%= d.getId_motorista()%>"><%= d.getNm_motorista()%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pass_selecionado" class="col-sm-2 col-form-label">Selecione o Passageiro</label>
+                            <div class="col-sm-10">
+                                <select class="custom-select my-1 mr-sm-2" name="pass_selecionado">
+                                    <option>Selecione</option>
+                                    <%for(AdicionarPassageiro p: AdicionarPassageiro.getPassa()){%>
+                                        <option value="<%= p.getId_passageiro()%>"><%= p.getNm_passageiro()%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="submit" name="cadMotorista" class="btn btn-primary my-1" value="Cadastrar"/>
+                    </form> 
+                <%}%>
             <%}%>
-        <%}%>
+        </div>
     </body>
 </html>

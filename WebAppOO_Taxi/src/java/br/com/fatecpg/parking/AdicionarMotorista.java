@@ -80,7 +80,7 @@ public class AdicionarMotorista {
         DatabaseConnector.execute(SQL, parameters);
     }
  
-    public static void removePass(long id_motorista) throws Exception {
+    public static void removeDriver(long id_motorista) throws Exception {
         String SQL = "DELETE FROM TB_MOTORISTA WHERE ID_MOTORISTA = ?";
         Object parameters[] = {id_motorista};
         DatabaseConnector.execute(SQL, parameters);

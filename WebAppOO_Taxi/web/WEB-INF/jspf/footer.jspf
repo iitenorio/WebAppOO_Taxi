@@ -1,0 +1,18 @@
+<%@ page pageEncoding="UTF-8" %>
+
+
+
+<!-- link Google Fonts / Footer-->
+<link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+
+<!-- Link do CSS usado no footer -->
+<link rel="stylesheet" href="css/footer.css" type="text/css"/>
+
+<footer  class="container-fluid bg-grey text-center" class="a_footer">
+    <br>
+    <a href="#" title="Facebook"><img src="Imagens/facebook.png" style="height: 3em;"></a>
+    <a href="#" title="Twitter"><img src="Imagens/twitter.png" style="height: 3em;"></a>
+    <a href="#" title="Instagram"><img src="Imagens/instagram.png" style="height: 3em;"></a>
+    <br><br>
+    © 2018 Copyright: <a href="https://github.com/wiliansaugusto">Meu GitHub</a>
+</footer>
